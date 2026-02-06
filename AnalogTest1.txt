@@ -1,0 +1,47 @@
+/*
+  Analog Input
+ Demonstrates analog input by reading an analog sensor on analog pin 0 and
+ turning on and off a LED  connected to digital pin 7.
+ This is connected to the LED array pin 7.
+ Our shield has a potentiometer attached to analog input 0
+ * center pin of the potentiometer is coonected to the analog pin
+ * one side pin is connected to ground
+ * the other side pin is connected to +5V
+ 
+ Based on a skecth origially created by David Cuartielles
+ amd modified by Tom Igoe
+
+ Their example code is in the public domain.
+
+ http://www.arduino.cc/en/Tutorial/AnalogInput
+
+ In this code, we want to turn the LED on if the Analog input value 
+ is greater than 2.5V, and turn it off, if the input is less than 
+ 2.5V.
+
+ We don't need to calculate the actual voltage:
+ 5V corresonds to a reading of 1023 and the potentiometer and 
+ ADC are linear, so 2.5V corresponds to a reading 512 or 511
+ */
+
+int AnalogPin = A0;    // select the input pin for the potentiometer
+int ledPin = 12;        // select the pin for the LED
+int AnalogReading;     // The value that is read from the ADC
+
+void setup() {
+  // declare the ledPin as an OUTPUT:
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // read the value from the ADC:
+  AnalogReading = analogRead(AnalogPin);
+  // Now test the reading. A reading of 512 means 2.5V
+  if (AnalogReading < 512)
+    // turn the ledPin off
+    digitalWrite(ledPin, LOW);
+  else
+    // turn the ledPin off:
+    digitalWrite(ledPin, HIGH);
+  
+}
