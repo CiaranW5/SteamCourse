@@ -69,25 +69,25 @@ void setup() {
   delayMS = sensor.min_delay / 1000;
 }
 
-void setLEDS (float temperature_degC, float humidity_perCent)
+void setLEDS (float temperature_degC, float humidity_perCent, int TEMP_LED, int HUMIDITY_LED)
 {
     
   if (temperature_degC > 24.0)
   {
-    digitalWrite (RED_LED, HIGH);
+    digitalWrite (TEMP_LED, HIGH);
   }    
   else 
   {
-    digitalWrite (RED_LED, LOW);
+    digitalWrite (TEMP_LED, LOW);
   }
   
   if (humidity_perCent > 60.0)
   {
-    digitalWrite (BLUE_LED, HIGH);
+    digitalWrite (HUMIDITY_LED, HIGH);
   }    
   else 
   {
-    digitalWrite (BLUE_LED, LOW);
+    digitalWrite (HUMIDITY_LED, LOW);
   }
 }
 
@@ -122,7 +122,7 @@ void loop() {
 
   humidity_reading = event.relative_humidity;
 
-  setLEDS (temperature_reading, humidity_reading);
+  setLEDS (temperature_reading, humidity_reading, RED_LED, BLUE_LED);
 }
 
 
